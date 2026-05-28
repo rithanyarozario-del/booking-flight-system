@@ -23,7 +23,7 @@ def register():
 
 def login():
     if not os.path.exists(user_file):
-        print("No Users Regestred")")
+        print("N USers Reiered")
         with open(user_file, 'r') as f:
 
 

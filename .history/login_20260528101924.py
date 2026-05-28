@@ -21,11 +21,6 @@ def register():
         f.write(f"{username}:{hash_password(password)}\n")
     print("Registration successful")
 
-def login():
-    if not os.path.exists(user_file):
-        print("No Users Regestred")")
-        with open(user_file, 'r') as f:
-
 
 def login ():
     options = {'1': Register, '2': Login, '3': Exit}

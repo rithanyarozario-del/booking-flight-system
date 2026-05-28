@@ -17,14 +17,7 @@ def register():
         print("Username already exists")
         return
     password = input("Enter password:")
-    with open(userfile, 'a') as f:
-        f.write(f"{username}:{hash_password(password)}\n")
-    print("Registration successful")
-
-def login():
-    if not os.path.exists(user_file):
-        print("No Users Regestred")")
-        with open(user_file, 'r') as f:
+    with open 
 
 
 def login ():
