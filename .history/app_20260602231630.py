@@ -11,7 +11,6 @@ def home():
         password = request.form["password"]
 
         result=login(username,password)
-        return result
     return render_template("login.html")
 
 if __name__ == "__main__":

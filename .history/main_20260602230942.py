@@ -35,3 +35,32 @@ def login(username, password):
 
     return "Login Failed"
 
+        hashed = hash_password(password)
+        with open(user_file, 'r') as f:
+            for line in f:
+                if line.strip() == f"{username}:{hashed}":
+                    print("Login Successful")
+
+        print("Login Failed")
+
+
+
+
+def main ():
+    options = {
+        '1': Register, 
+        '2': Login, 
+        '3': Exit
+        }
+    while True:
+        print ("\n1. Register \n2.Login\n3.Exit")
+        choice = input("choose an option:")
+        action = options.get(choice) 
+        if action:
+            action()
+        
+        else:
+            print("Invalid Login")
+
+if __name__ == "__main__":
+    main()
