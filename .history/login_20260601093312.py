@@ -5,6 +5,7 @@ userfile = 'users.txt'
 
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
+
 def users_exist(username):
     if not os.path.exists(userfile):
         return False
@@ -24,6 +25,10 @@ def register():
 def login():
     if not os.path.exists(user_file):
         print("No Users Regestred")")
+
+        userame = input("Enter unsername")
+        password = input("Enter password")
+        hashed = has
         with open(user_file, 'r') as f:
 
 
