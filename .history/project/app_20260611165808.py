@@ -47,7 +47,7 @@ def feedback():
 
 @app.route("/thankyou")
 def thank_you():
-        return "Thank you for your feedback!"
+        reuturn "Thank you for your feedback"
 
 
 if __name__ == "__main__":

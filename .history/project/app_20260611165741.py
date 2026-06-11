@@ -47,7 +47,9 @@ def feedback():
 
 @app.route("/thankyou")
 def thank_you():
-        return "Thank you for your feedback!"
+        return register(username,password)
+
+    return render_template("register.html")
 
 
 if __name__ == "__main__":
