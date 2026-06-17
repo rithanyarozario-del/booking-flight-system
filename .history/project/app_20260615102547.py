@@ -41,8 +41,8 @@ def feedback():
         comment = request.form["comment"]
         #Simple Validation
         if not name or not email or not comment:
-            return "Please fill in all fields.", 400
-        return redirect(url_for('thank_you'))
+        return "Please fill in all fields.", 400
+          return redirect(url_for('thank you'))
     return render_template('booking.html')
 
 @app.route("/thankyou")

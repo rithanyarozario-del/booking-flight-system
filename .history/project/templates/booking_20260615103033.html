@@ -1,4 +1,11 @@
-from flask import Flask, render_template, request, url_for, redirect
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0>
+    <title>Flight Booking Form</title>
+from flask import Flask, render_template, request, url_for
 from main import login, register
 
 app = Flask(__name__)
@@ -42,7 +49,7 @@ def feedback():
         #Simple Validation
         if not name or not email or not comment:
             return "Please fill in all fields.", 400
-        return redirect(url_for('thank_you'))
+          return redirect(url_for('thank you'))
     return render_template('booking.html')
 
 @app.route("/thankyou")
@@ -53,4 +60,8 @@ def thank_you():
 if __name__ == "__main__":
     app.run(debug=True)
 
-    
+
+</head>
+<body>   
+</body>
+</html>

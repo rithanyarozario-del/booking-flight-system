@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request
 from main import login, register
 
 app = Flask(__name__)
@@ -42,8 +42,8 @@ def feedback():
         #Simple Validation
         if not name or not email or not comment:
             return "Please fill in all fields.", 400
-        return redirect(url_for('thank_you'))
-    return render_template('booking.html')
+          return redirect(url_for('thank you'))
+    return render_template('.html')
 
 @app.route("/thankyou")
 def thank_you():
