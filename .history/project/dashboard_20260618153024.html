@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Bookings - Flight Booking System</title>
+</head>
+<body>
+
+    <h1>Welcome {{ username }}!</h1>
+    <a href="/logout">Logout</a>
+
+    <hr>
+
+    <h2>New Booking</h2>
+    <form method="POST" action="/dashboard">
+        <label>Departure City</label><br>
+        <select name="departure">
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Brisbane">Brisbane</option>
+        </select>
+        <br><br>
+
+        <label>Arrival City</label><br>
+        <select name="arrival">
+            <option value="Sydney">Sydney</option>
+            <option value="Melbourne">Melbourne</option>
+            <option value="Brisbane">Brisbane</option>
+        </select>
+        <br><br>
+
+        <label>Departure Date</label><br>
+        <input type="date" name="departure_date">
+
+
+    </form>
+</body>
