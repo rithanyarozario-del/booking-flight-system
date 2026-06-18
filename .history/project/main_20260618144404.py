@@ -63,8 +63,7 @@ def login(username, password):
 def save_bookings(username, booking):
     #Only insert one bokign row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()    
-    c.execute("""
+    c    = conn.cursor()    c.execute("""
         INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
         VALUES (?, ?, ?, ?, ?, ?)
     """, (
@@ -78,7 +77,7 @@ def save_bookings(username, booking):
     conn.commit()
     conn.close()
 
-def get_bookings(username):
+    def get_bookings(username):
         #Returns a list of all the bookings for the given user only.
         conn = sqlite3.connect(DB_FILE)
         conn.row_factory = sqlite3.Row

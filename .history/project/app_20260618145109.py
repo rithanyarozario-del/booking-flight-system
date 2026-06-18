@@ -39,7 +39,7 @@ def register_page():
         message = register(username, password)
 
         if message == "Registration successful":
-            return redirect(url_for("registration_success", username=username))
+            return redirect(url_for("registeration_success", username=username))
         #Show the result message back on the registration page
 
         return render_template("register.html", message=message)
@@ -48,7 +48,7 @@ def register_page():
 @app.route("/register/success")
 def registration_success():
     username = request.args.get("username")
-    return render_template("registration_success.html", username=username)
+    return render_template("registeration_success.html", username=username)
 
 
 

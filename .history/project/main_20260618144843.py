@@ -78,7 +78,7 @@ def save_bookings(username, booking):
     conn.commit()
     conn.close()
 
-def get_bookings(username):
+    def get_bookings(username):
         #Returns a list of all the bookings for the given user only.
         conn = sqlite3.connect(DB_FILE)
         conn.row_factory = sqlite3.Row

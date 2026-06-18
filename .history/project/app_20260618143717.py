@@ -39,7 +39,7 @@ def register_page():
         message = register(username, password)
 
         if message == "Registration successful":
-            return redirect(url_for("registration_success", username=username))
+            return redirect(url_for"registration_success", username=username)
         #Show the result message back on the registration page
 
         return render_template("register.html", message=message)

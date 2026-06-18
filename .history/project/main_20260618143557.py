@@ -11,8 +11,8 @@ def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 def init_db(): #Creates an booking table that does not already exist to stre users bookings seperatley. 
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
+        conn = sqlite3.connect(DB_FILE)
+    c    = conn.cursor()
     c.execute("""
         CREATE TABLE IF NOT EXISTS bookings (
             id         INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -27,7 +27,7 @@ def init_db(): #Creates an booking table that does not already exist to stre use
     conn.commit()
     conn.close()
 
-init_db() #Initialises the database when the website first starts.
+    init_db() #Initialises the database when the website first starts.
 
 
 def users_exist(username):
@@ -63,8 +63,7 @@ def login(username, password):
 def save_bookings(username, booking):
     #Only insert one bokign row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()    
-    c.execute("""
+    c    = conn.cursor()    c.execute("""
         INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
         VALUES (?, ?, ?, ?, ?, ?)
     """, (
@@ -78,12 +77,12 @@ def save_bookings(username, booking):
     conn.commit()
     conn.close()
 
-def get_bookings(username):
+    def get_bookings(username):
         #Returns a list of all the bookings for the given user only.
         conn = sqlite3.connect(DB_FILE)
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
-        c.execute ("""
+        c.execute ()"""
              SELECT id, departure, arrival, date, passengers, ticket
              FROM   bookings
              WHERE  username = ?

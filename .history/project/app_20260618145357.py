@@ -48,7 +48,7 @@ def register_page():
 @app.route("/register/success")
 def registration_success():
     username = request.args.get("username")
-    return render_template("registration_success.html", username=username)
+    return render_template("registeration_success.html", username=username)
 
 
 
