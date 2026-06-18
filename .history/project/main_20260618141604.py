@@ -82,12 +82,4 @@ def save_bookings(username, booking):
         conn = sqlite3.connect(DB_FILE)
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
-        c.execute ("""
-             SELECT id, departure, arrival, date, passengers, ticket
-             FROM   bookings
-             WHERE  username = ?
-             ORDER  BY id DESC
-        """, (username,))
-        rows = [dict(row) for row in c.fetchall()]
-        conn.close()
-        return rows
+        

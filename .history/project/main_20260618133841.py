@@ -60,34 +60,4 @@ def login(username, password):
     return "Login Failed"
 
 
-def save_bookings(username, booking):
-    #Only insert one bokign row for the given user which will not affect other users bookings.
-    conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()    c.execute("""
-        INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, (
-        username,
-        booking.get ("departure"),
-        booking.get ("arrival"),
-        booking.get ("date"),
-        booking.get ("passengers"),
-        booking.get ("ticket"),
-    ))
-    conn.commit()
-    conn.close()
 
-    def get_bookings(username):
-        #Returns a list of all the bookings for the given user only.
-        conn = sqlite3.connect(DB_FILE)
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute ("""
-             SELECT id, departure, arrival, date, passengers, ticket
-             FROM   bookings
-             WHERE  username = ?
-             ORDER  BY id DESC
-        """, (username,))
-        rows = [dict(row) for row in c.fetchall()]
-        conn.close()
-        return rows

@@ -82,7 +82,7 @@ def save_bookings(username, booking):
         conn = sqlite3.connect(DB_FILE)
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
-        c.execute ("""
+        c.execute ()"""
              SELECT id, departure, arrival, date, passengers, ticket
              FROM   bookings
              WHERE  username = ?

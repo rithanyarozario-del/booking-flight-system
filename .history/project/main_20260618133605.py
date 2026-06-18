@@ -3,7 +3,7 @@ import hashlib
 import sqlite3
 
 USERFILE = "users.txt"
-DB_FILE = "bookings.db" #SQLite database file for storing bookings per user.
+DB_FILE = "bookings.db" #SQLite database file for storing bookings per user 
 
 
 #Secures the Password by hashing using SHA-256 algortihm to ensure the password is not exposed.
@@ -38,56 +38,25 @@ def users_exist(username):
     with open(USERFILE, "r") as f:
         return any(line.startswith(f"{username}:") for line in f)
     
-    
 def register(username, password):
-    #Add a new user, rejecting duplicates.
     if users_exist(username):
-        return "Username already exists"      
+        return "Username already exists"
+        
     with open(USERFILE, "a") as f:
         f.write(f"{username}:{hash_password(password)}\n")
+
     return "Registration successful"
 
-
 def login(username, password):
-    #Returns Login as successful if the username and password match, otherwise Login Failed.
     if not os.path.exists(USERFILE):
         return "No Users Registered"
-    hashed = hash_password(password)   
+
+    hashed = hash_password(password)
+    
     with open(USERFILE, "r") as f:
         for line in f:
             if line.strip() == f"{username}:{hashed}":
                 return "Login Successful"
+
     return "Login Failed"
 
-
-def save_bookings(username, booking):
-    #Only insert one bokign row for the given user which will not affect other users bookings.
-    conn = sqlite3.connect(DB_FILE)
-    c    = conn.cursor()    c.execute("""
-        INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, (
-        username,
-        booking.get ("departure"),
-        booking.get ("arrival"),
-        booking.get ("date"),
-        booking.get ("passengers"),
-        booking.get ("ticket"),
-    ))
-    conn.commit()
-    conn.close()
-
-    def get_bookings(username):
-        #Returns a list of all the bookings for the given user only.
-        conn = sqlite3.connect(DB_FILE)
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute ("""
-             SELECT id, departure, arrival, date, passengers, ticket
-             FROM   bookings
-             WHERE  username = ?
-             ORDER  BY id DESC
-        """, (username,))
-        rows = [dict(row) for row in c.fetchall()]
-        conn.close()
-        return rows
