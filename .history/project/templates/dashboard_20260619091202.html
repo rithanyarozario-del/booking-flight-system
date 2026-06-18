@@ -61,8 +61,8 @@
             const oneYearLater = new Date();
             oneYearLater.setFullYear(today.getFullYear() + 1);
 
-            document.getElementById("date").min = formatDate(today);
-            document.getElementById("date").max = formatDate(oneYearLater);
+            document.getElementById("date").min = today.toISOString().split("T")[0];
+            document.getElementById("date").max = oneYearLater.toISOString().split("T")[0];
 
             document.querySelector("form").addEventListener("submit", function(e) {
                 const selectedDate = new Date(document.getElementById("date").value);

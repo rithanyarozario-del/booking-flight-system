@@ -50,27 +50,17 @@
         <br><br>
 
         <script>
-            function formatDate(date) {
-                const year = date.getFullYear();
-                const month = String(date.getMonth() + 1).padStart(2, "0");
-                const day = String(date.getDate()).padStart(2, "0");
-                return `${year}-${month}-${day}`;
-            }
-        
             const today = new Date();
             const oneYearLater = new Date();
             oneYearLater.setFullYear(today.getFullYear() + 1);
 
-            document.getElementById("date").min = formatDate(today);
-            document.getElementById("date").max = formatDate(oneYearLater);
+            document.getElementById("date").min = today.toISOString().split("T")[0];
+            document.getElementById("date").max = oneYearLater.toISOString().split("T")[0];
 
             document.querySelector("form").addEventListener("submit", function(e) {
-                const selectedDate = new Date(document.getElementById("date").value);
-                if (selectedDate < new Date(document.getElementById("date").min) || selectedDate > new Date(document.getElementById("date").max)) {
-                    alert("Please choose a valid departure date.");
-                    e.preventDefault();
-                }     
-            });
+                const selectedDate = new Date(document.getElementById("date");
+                if (dateInput.value < this.min || dateInput.value > dateInput.max) {
+                    alert("Please ")
         </script>
 
 
