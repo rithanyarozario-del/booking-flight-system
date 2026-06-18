@@ -13,27 +13,23 @@
     <h2>New Booking</h2>
     <form method="POST" action="/dashboard">
         <label>Departure City</label><br>
-        <select name="departure" required>
+        <select name="departure">
             <option value="Sydney">Sydney</option>
             <option value="Melbourne">Melbourne</option>
             <option value="Brisbane">Brisbane</option>
         </select>
         <br><br>
-
-
 
         <label>Arrival City</label><br>
-        <select name="arrival" required>
+        <select name="arrival">
             <option value="Sydney">Sydney</option>
             <option value="Melbourne">Melbourne</option>
             <option value="Brisbane">Brisbane</option>
         </select>
         <br><br>
 
-
-
         <label>Departure Date</label><br>
-        <input type="date" name="date" id="date" required>
+        <input type="date" name="date" id="date">
         <br><br>
 
         <script>
@@ -45,45 +41,27 @@
             document.getElementById("date").max = oneYearLater.toISOString().split("T")[0];
         </script>
 
-
-
                 <label>Number of Passengers</label><br>
-        <input type="number" name="passengers" min="1" value="1" max="20"oninput="updatePassengers(this.value)" required>
+        <input type="number" name="passengers" min="1" value="1" max="30"oninput="updatePassengers(this.value)">
         <br><br>
-
-        <div id="passenger-details"></div>
-
+        <div id="passenger-details">
         <script>
         function updatePassengers(total) {
             total = parseInt(total);
             document.getElementById("passenger-details").innerHTML = `
                     <label>Adults</label><br>
-                    <input type="number" name="adults" min="1" max="${total}" value="${total}" id="adults" oninput="syncPassengers(${total}, 'adults')"><br><br>
+                    <input type="number" name="adults" min="0" max="${total}" value="${total}" oninput="this.nextElementSibling.nextElementSibling.value=${total}-this.value">
+                    <br><br>
                     <label>Children</label><br>
-                    <input type="number" name="children" min="0" max="${total}" value="0" id="children" oninput="syncPassengers(${total}, 'children')">
+                    <input type="number" name="children" min="0" max="${total}" value="0" oninput="this.nextElementSibling.nextElementSibling.value=${total}-this.value">
                     <br><br>  
-            `;  
-        }
-
-        function syncPassengers(total, changed) {
-            const adults = document.getElementById("adults");
-            const children = document.getElementById("children");
-         if (changed === "adults") {
-             children.value = total - parseInt(adults.value);
-        } else {
-            let newAdults = total - parseInt(children.value);
-            if (newAdults < 1) {
-                children.value = total - 1;
-                newAdults = 1;
-            }
-        adults.value = newAdults;
-        }
-}
+                        `;  
+       
         </script>
 
 
         <label>Ticket Class</label><br>
-        <select name="ticket" required>
+        <select name="ticket">
             <option value="Economy">Economy</option>
             <option value="Business">Business</option>
         </select>

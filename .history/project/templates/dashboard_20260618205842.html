@@ -20,7 +20,7 @@
         </select>
         <br><br>
 
-
+        
 
         <label>Arrival City</label><br>
         <select name="arrival" required>
@@ -33,7 +33,7 @@
 
 
         <label>Departure Date</label><br>
-        <input type="date" name="date" id="date" required>
+        <input type="date" name="date" id="date">
         <br><br>
 
         <script>
@@ -45,10 +45,8 @@
             document.getElementById("date").max = oneYearLater.toISOString().split("T")[0];
         </script>
 
-
-
                 <label>Number of Passengers</label><br>
-        <input type="number" name="passengers" min="1" value="1" max="20"oninput="updatePassengers(this.value)" required>
+        <input type="number" name="passengers" min="1" value="1" max="20"oninput="updatePassengers(this.value)">
         <br><br>
 
         <div id="passenger-details"></div>
@@ -79,11 +77,12 @@
         adults.value = newAdults;
         }
 }
+
         </script>
 
 
         <label>Ticket Class</label><br>
-        <select name="ticket" required>
+        <select name="ticket">
             <option value="Economy">Economy</option>
             <option value="Business">Business</option>
         </select>
