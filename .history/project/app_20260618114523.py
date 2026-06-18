@@ -11,7 +11,6 @@ app.secret_key = "your_secret_key_here"
 def home():
     return render_template("home.html")
 
-
 #Login route
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
@@ -28,7 +27,6 @@ def login_page():
 
     return render_template("login.html")
 
-
 #Register route
 @app.route("/register", methods=["GET", "POST"])
 def register_page():
@@ -41,43 +39,30 @@ def register_page():
         if message == "Registration successful":
             return redirect(url_for"registration_success", username=username))
         #Show the result message back on the registration page
-
         return render_template("register.html", message=message)
     return render_template("register.html")
 
-@app.route("/register/success")
-def registration_success():
-    username = request.args.get("username")
-    return render_template("registration_success.html", username=username)
 
+@app.route("/submit", methods=['POST'])
+def submit():
+    name = request.form['name']
+    return f"Thank you {name} for submitting your form!"
+@app.route("/feedback", methods=['GET', 'POST'])
+def feedback():
 
+    if request.method == 'POST':
+        name = request.form["name"]
+        email = request.form["email"]
+        comment = request.form["comment"]
+        #Simple Validation
+        if not name or not email or not comment:
+            return "Please fill in all fields.", 400
+        return redirect(url_for('thank_you'))
+    return render_template('booking.html')
 
-@app.route("/logout")
-def logout():
-    session.clear() #clears the session data that logs out the user
-    return redirect(url_for('home'))
-
-
-@app.route("/dashboard", methods=["GET", "POST"])
-def dashboard():
-    if "username" not in session:
-        return redirect(url_for("login_page"))
-    
-    username = session["username"]
-
-    if request.method == "POST":
-        booking = {
-            "departure":  request.form.get("departure"),
-            "arrival":    request.form.get("arrival"),
-            "date":       request.form.get("date"),
-            "passengers": request.form.get("passengers"),
-            "ticket":     request.form.get("ticket"),
-        }
-        save_bookings(username, booking)
-        return redirect(url_for("dashboard"))
-    
-    bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings)
+@app.route("/thankyou")
+def thank_you():
+        return "Thank you for your feedback!"
 
 
 if __name__ == "__main__":

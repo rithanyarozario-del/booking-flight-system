@@ -76,8 +76,8 @@ def dashboard():
         save_bookings(username, booking)
         return redirect(url_for("dashboard"))
     
-    bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings)
+    
+
 
 
 if __name__ == "__main__":

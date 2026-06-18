@@ -79,7 +79,6 @@ def dashboard():
     bookings = get_bookings(username)
     return render_template("dashboard.html", username=username, bookings=bookings)
 
-
 if __name__ == "__main__":
     app.run(debug=True)
 

@@ -54,30 +54,25 @@ def registration_success():
 
 @app.route("/logout")
 def logout():
-    session.clear() #clears the session data that logs out the user
+    session.clear() #clears
     return redirect(url_for('home'))
 
+@app.route("/feedback", methods=['GET', 'POST'])
+def feedback():
 
-@app.route("/dashboard", methods=["GET", "POST"])
-def dashboard():
-    if "username" not in session:
-        return redirect(url_for("login_page"))
-    
-    username = session["username"]
+    if request.method == 'POST':
+        name = request.form["name"]
+        email = request.form["email"]
+        comment = request.form["comment"]
+        #Simple Validation
+        if not name or not email or not comment:
+            return "Please fill in all fields.", 400
+        return redirect(url_for('thank_you'))
+    return render_template('booking.html')
 
-    if request.method == "POST":
-        booking = {
-            "departure":  request.form.get("departure"),
-            "arrival":    request.form.get("arrival"),
-            "date":       request.form.get("date"),
-            "passengers": request.form.get("passengers"),
-            "ticket":     request.form.get("ticket"),
-        }
-        save_bookings(username, booking)
-        return redirect(url_for("dashboard"))
-    
-    bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings)
+@app.route("/thankyou")
+def thank_you():
+        return "Thank you for your feedback!"
 
 
 if __name__ == "__main__":

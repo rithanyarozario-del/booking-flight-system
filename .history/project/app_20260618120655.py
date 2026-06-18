@@ -73,11 +73,8 @@ def dashboard():
             "passengers": request.form.get("passengers"),
             "ticket":     request.form.get("ticket"),
         }
-        save_bookings(username, booking)
-        return redirect(url_for("dashboard"))
-    
-    bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings)
+        save_bookings(username, booking
+
 
 
 if __name__ == "__main__":
