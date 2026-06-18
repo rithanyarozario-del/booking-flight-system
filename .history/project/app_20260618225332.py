@@ -67,7 +67,7 @@ def dashboard():
 
     #Read arrival destinations from an file.
     with open("destinations.txt", "r") as f:
-        destinations = [line.strip() for line in f.readlines()]
+        distinations = [line.strip() for line in f f.readlines
 
     if request.method == "POST":
         booking = {
@@ -83,7 +83,7 @@ def dashboard():
         return redirect(url_for("dashboard"))
     
     bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
+    return render_template("dashboard.html", username=username, bookings=bookings)
 
 
 if __name__ == "__main__":

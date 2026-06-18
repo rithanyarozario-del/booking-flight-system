@@ -28,7 +28,6 @@
             Array.from(arrivalSelect.options).forEach(option => {
                option.disabled = option.value === departure;
             });
-            if (arrivalSelect.value === departure) arrivalSelect.value = "";
         });
         </script>
 
@@ -36,7 +35,7 @@
 
         <label>Arrival City</label><br>
         <select name="arrival" id="arrival"required>
-            <option value="">Select Arrival City</option>
+            <option value="">-- Select Arrival City --</option>
             {% for city in destinations %}
                 <option value="{{ city }}">{{ city }}</option>
             {% endfor %}

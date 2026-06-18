@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from main import login, register, save_bookings, get_bookings 
+from main import login, register, save_booking, get_bookings 
 
 app = Flask(__name__)
 
@@ -79,7 +79,7 @@ def dashboard():
             "children": request.form.get("children"),
             "ticket":     request.form.get("ticket"),
         }
-        save_bookings(username, booking)
+        save_booking(username, booking)
         return redirect(url_for("dashboard"))
     
     bookings = get_bookings(username)

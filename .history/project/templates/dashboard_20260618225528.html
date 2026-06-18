@@ -10,36 +10,23 @@
 
     <hr>
 
-
     <h2>New Booking</h2>
     <form method="POST" action="/dashboard">
         <label>Departure City</label><br>
-        <select name="departure" id="departure" required>
+        <select name="departure" required>
             <option value="Sydney">Sydney</option>
             <option value="Melbourne">Melbourne</option>
             <option value="Brisbane">Brisbane</option>
         </select>
         <br><br>
 
-        <script>
-        document.getElementById("departure").addEventListener("change", function() {
-            const departure= this.value
-            const arrivalSelect= document.getElementById("arrival");
-            Array.from(arrivalSelect.options).forEach(option => {
-               option.disabled = option.value === departure;
-            });
-            if (arrivalSelect.value === departure) arrivalSelect.value = "";
-        });
-        </script>
-
 
 
         <label>Arrival City</label><br>
-        <select name="arrival" id="arrival"required>
-            <option value="">Select Arrival City</option>
+        <select name="arrival" required>
             {% for city in destinations %}
-                <option value="{{ city }}">{{ city }}</option>
-            {% endfor %}
+            
+
         </select>
         <br><br>
 

@@ -79,7 +79,7 @@ def dashboard():
             "children": request.form.get("children"),
             "ticket":     request.form.get("ticket"),
         }
-        save_bookings(username, booking)
+        save_booking(username, booking)
         return redirect(url_for("dashboard"))
     
     bookings = get_bookings(username)

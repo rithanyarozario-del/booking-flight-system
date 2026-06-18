@@ -20,23 +20,20 @@
             <option value="Brisbane">Brisbane</option>
         </select>
         <br><br>
+        <script><
 
-        <script>
         document.getElementById("departure").addEventListener("change", function() {
             const departure= this.value
             const arrivalSelect= document.getElementById("arrival");
             Array.from(arrivalSelect.options).forEach(option => {
                option.disabled = option.value === departure;
             });
-            if (arrivalSelect.value === departure) arrivalSelect.value = "";
         });
-        </script>
 
 
 
         <label>Arrival City</label><br>
         <select name="arrival" id="arrival"required>
-            <option value="">Select Arrival City</option>
             {% for city in destinations %}
                 <option value="{{ city }}">{{ city }}</option>
             {% endfor %}

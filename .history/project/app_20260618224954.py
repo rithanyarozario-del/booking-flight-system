@@ -65,25 +65,20 @@ def dashboard():
     
     username = session["username"]
 
-    #Read arrival destinations from an file.
-    with open("destinations.txt", "r") as f:
-        destinations = [line.strip() for line in f.readlines()]
-
     if request.method == "POST":
         booking = {
             "departure":  request.form.get("departure"),
             "arrival":    request.form.get("arrival"),
             "date":       request.form.get("date"),
             "passengers": request.form.get("passengers"),
-            "adults": request.form.get("adults"),
-            "children": request.form.get("children"),
+            "passengers": request.form.get("passengers"),
             "ticket":     request.form.get("ticket"),
         }
         save_bookings(username, booking)
         return redirect(url_for("dashboard"))
     
     bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
+    return render_template("dashboard.html", username=username, bookings=bookings)
 
 
 if __name__ == "__main__":
