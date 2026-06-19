@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from main import login, register, save_bookings, get_bookings, delete_booking_by_id
+from main import login, register, save_bookings, get_bookings,
 
 app = Flask(__name__)
 

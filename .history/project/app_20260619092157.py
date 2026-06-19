@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from main import login, register, save_bookings, get_bookings, delete_booking_by_id
+from main import login, register, save_bookings, get_bookings 
 
 app = Flask(__name__)
 
@@ -86,12 +86,10 @@ def dashboard():
     return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
 
 
-@app.route("/delete/<int:booking_id>", methods=["POST"])
-def delete_booking(booking_id):
-    if "username" not in session:
-        return redirect(url_for("login_page"))
-    delete_booking_by_id(session ["username"], booking_id)
-    return redirect(url_for("dashboard"))
+@app.route("/logout")
+def logout():
+    session.clear() #clears the session data that logs out the user
+    return redirect(url_for('home'))
 
 
 if __name__ == "__main__":

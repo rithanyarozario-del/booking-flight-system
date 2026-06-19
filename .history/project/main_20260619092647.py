@@ -95,8 +95,4 @@ def get_bookings(username):
 
 def delete_booking_by_id(username, booking_id):
     #Deletes Bookings for users based on the booking id that doesnt affect other users bookings.
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("DELETE FROM bookings WHERE id = ? AND username = ?", (booking_id, username))
-    conn.commit()
-    conn.close()
+    conn = sqlite3.

@@ -132,7 +132,6 @@
                 <th>Date</th>
                 <th>Passengers</th>
                 <th>Class</th>
-                <th>Delete</th>
             </tr>
             {% for b in bookings %}
             <tr>
@@ -142,19 +141,12 @@
                 <td>{{ b.date }}</td>
                 <td>{{ b.passengers }}</td>
                 <td>{{ b.ticket }}</td>
-                <td>
-                <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
             </tr>
             {% endfor %}
         </table>
     {% else %}
         <p>No bookings yet — make one above!</p>
     {% endif %}
-
-    <th></th>
 
 </body>
 </html>

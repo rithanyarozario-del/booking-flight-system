@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from main import login, register, save_bookings, get_bookings, delete_booking_by_id
+from main import login, register, save_bookings, get_bookings 
 
 app = Flask(__name__)
 
@@ -92,6 +92,7 @@ def delete_booking(booking_id):
         return redirect(url_for("login_page"))
     delete_booking_by_id(session ["username"], booking_id)
     return redirect(url_for("dashboard"))
+
 
 
 if __name__ == "__main__":
