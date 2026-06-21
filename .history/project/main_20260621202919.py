@@ -50,51 +50,6 @@ def init_db(): #Creates an booking table that does not already exist to stre use
 init_db() #Initialises the database when the website first starts.
 
 
-#SQL Table storing flight prices (Sqlite)
-def init_flights_table():
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("""
-        CREATE TABLE IF NOT EXISTS flights (
-            flight_id   INTEGER PRIMARY KEY AUTOINCREMENT,
-            flight_code    TEXT NOT NULL UNIQUE,
-            departure      TEXT NOT NULL,
-            arrival        TEXT NOT NULL,
-            dep_time       TEXT,
-            arr_time       TEXT,
-            base_fare      REAL NOT NULL,
-        )
-    """)
-    conn.commit()
-    conn.close()
-
-#Adds the flight routes and prices, but only once
-def seed_flights():
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("SELECT COUNT(*) FROM flights")
-    if c.fetchone()[0] == 0:
-    c.executemany("""
-        INSERT INTO flights (flight_code, departure, arrival, dep_time, arr_time, base_fare)
-        VALUES (?, ?, ?, ?, ?, ?)
-    """, [
-        ("RY01", "Sydney", "Melbourne", "09:00", "10:30", 150.00),
-        ("RY02", "Melbourne", "Sydney", "11:00", "12:30", 150.00),
-        ("RY03", "Sydney", "Brisbane", "08:30", "10:30", 200.00),
-        ("RY04", "Brisbane", "Sydney", "13:00", "15:00", 200.00),
-        ("RY05", "Sydney", "Adelaide", "09:00", "12:00", 180.00),
-        ("RY06", "Adelaide", "Sydney", "13:00", "16:00", 180.00),
-        ("RY07", "Melbourne", "Brisbane", "10:00", "12:00", 190.00),
-        ("RY08", "Brisbane", "Melbourne", "14:00", "16:00", 190.00),
-        ("RY09", "Adelaide", "Melbourne", "09:30", "11:00", 160.00),
-        ("RY010", "Melbourne", "Adelaide", "12:00", "01:30", 160.00),
-        ("RY011", "Adelaide", "Brisbane", "10:00", "13:00", 220.00),  
-        ("RY012", "Brisbane", "Adelaide", "14:00", "17:00", 220.00),    
-    ])
-    conn.commit()
-    conn.close()
-
-
 
 def users_exist(username):
     #Returns to True ifthe username is already registred, otherwise False.

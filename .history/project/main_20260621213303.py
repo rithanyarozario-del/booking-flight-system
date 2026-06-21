@@ -89,7 +89,7 @@ def seed_flights():
         ("RY09", "Adelaide", "Melbourne", "09:30", "11:00", 160.00),
         ("RY010", "Melbourne", "Adelaide", "12:00", "01:30", 160.00),
         ("RY011", "Adelaide", "Brisbane", "10:00", "13:00", 220.00),  
-        ("RY012", "Brisbane", "Adelaide", "14:00", "17:00", 220.00),    
+        ("RY012", "Brisbane", "Adelaide", "14:00", "17:30", 220.00),    
     ])
     conn.commit()
     conn.close()
