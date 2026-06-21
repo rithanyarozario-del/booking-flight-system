@@ -162,11 +162,9 @@
                         <button type="submit">Email my e-ticket</button>
                     </form>
                 </td>
-                <td>
                     <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
-                        <button type="submit">X</button>
-                    </form>
-                </td>
+                    <button type="submit">Delete</button>
+                </form>
             </tr>
             {% endfor %}
         </table>

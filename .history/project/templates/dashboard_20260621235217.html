@@ -91,7 +91,7 @@
             document.getElementById("passenger-details").innerHTML = `
                     <label>Adults</label><br>
                     <input type="number" name="adults" min="1" max="${total}" value="${total}" id="adults" oninput="syncPassengers(${total}, 'adults')"><br><br>
-                    <label>Children (Under 18)</label><br>
+                    <label>Children </label><br>
                     <input type="number" name="children" min="0" max="${total}" value="0" id="children" oninput="syncPassengers(${total}, 'children')">
                     <br><br>  
             `;  
@@ -143,9 +143,7 @@
                 <th>Passengers</th>
                 <th>Class</th>
                 <th>Cost</th>
-                <th>Bags</th>
-                <th>E-Ticket</th>
-                <th></th>
+                <th>Delete</th>
             </tr>
             {% for b in bookings %}
             <tr>
@@ -156,17 +154,14 @@
                 <td>{{ b.passengers }} ({{ b.adults }} adult{{ 's' if b.adults != '1' }}, {{ b.children }} child{{ 'ren' if b.children != '1' }})</td>
                 <td>{{ b.ticket }}</td>
                 <td>${{ b.cost }}</td>
-                <td>{{ b.bags }}</td>
                 <td>
-                    <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
-                        <button type="submit">Email my e-ticket</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
-                        <button type="submit">X</button>
-                    </form>
-                </td>
+                <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
+                    <button type="submit">Email my e-ticket</button>
+                </form>
+            </td>
             </tr>
             {% endfor %}
         </table>

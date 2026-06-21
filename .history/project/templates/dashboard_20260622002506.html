@@ -144,8 +144,6 @@
                 <th>Class</th>
                 <th>Cost</th>
                 <th>Bags</th>
-                <th>E-Ticket</th>
-                <th></th>
             </tr>
             {% for b in bookings %}
             <tr>
@@ -156,17 +154,15 @@
                 <td>{{ b.passengers }} ({{ b.adults }} adult{{ 's' if b.adults != '1' }}, {{ b.children }} child{{ 'ren' if b.children != '1' }})</td>
                 <td>{{ b.ticket }}</td>
                 <td>${{ b.cost }}</td>
-                <td>{{ b.bags }}</td>
+                <td>{{ b.bags</td>
                 <td>
-                    <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
-                        <button type="submit">Email my e-ticket</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
-                        <button type="submit">X</button>
-                    </form>
-                </td>
+                <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+                <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
+                    <button type="submit">Email my e-ticket</button>
+                </form>
+            </td>
             </tr>
             {% endfor %}
         </table>

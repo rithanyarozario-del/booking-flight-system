@@ -216,8 +216,8 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost, bags)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             username,
             booking.get ("departure"),

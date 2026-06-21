@@ -43,7 +43,6 @@ def init_db(): #Creates an booking table that does not already exist to stre use
             children   TEXT,
             ticket     TEXT,
             cost       REAL,
-            bags       TEXT,
             UNIQUE(username, date)
         )
     """)
@@ -208,7 +207,7 @@ def save_bookings(username, booking):
     )
     if cost is None: 
         return "No flight found for this route"
-    cost = apply_date_surcharge(cost, booking.get("date"))
+    cost = apply_date_surcharge(cost booking.get())
 
     #Only insert one booking row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
@@ -216,8 +215,8 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost, bags)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             username,
             booking.get ("departure"),
@@ -228,7 +227,6 @@ def save_bookings(username, booking):
             booking.get ("children"),
             booking.get ("ticket"),
             cost,
-            booking.get ("bags")
         ))
         conn.commit()
         return "OK"
@@ -245,7 +243,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost, bags
+             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC
