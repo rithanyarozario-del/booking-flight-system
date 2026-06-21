@@ -84,7 +84,7 @@ def dashboard():
             return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message="You already have a booking on this date")
         return redirect(url_for("dashboard"))
     
-    bookings = get_bookings(username)
+bookings = get_bookings(username)
     return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
 
 @app.route("/delete/<int:booking_id>", methods=["POST"])

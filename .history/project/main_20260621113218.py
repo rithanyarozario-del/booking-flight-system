@@ -21,7 +21,7 @@ def init_db(): #Creates an booking table that does not already exist to stre use
             arrival    TEXT,
             date       TEXT,
             passengers TEXT,
-            ticket     TEXT,
+            ticket     TEXT
             UNIQUE(username, date)
         )
     """)
@@ -65,24 +65,19 @@ def save_bookings(username, booking):
     #Only insert one bokign row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
     c    = conn.cursor()    
-    try:
-        c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, (
-            username,
-            booking.get ("departure"),
-            booking.get ("arrival"),
-            booking.get ("date"),
-            booking.get ("passengers"),
-            booking.get ("ticket"),
-        ))
-        conn.commit()
-        return True
-    except sqlite3.IntegrityError:
-        return False
-    finally:
-        conn.close()
+    c.execute("""
+        INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (
+        username,
+        booking.get ("departure"),
+        booking.get ("arrival"),
+        booking.get ("date"),
+        booking.get ("passengers"),
+        booking.get ("ticket"),
+    ))
+    conn.commit()
+    conn.close()
 
 def get_bookings(username):
         #Returns a list of all the bookings for the given user only.

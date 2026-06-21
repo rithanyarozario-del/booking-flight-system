@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from main import login, register, save_bookings, get_bookings, delete_booking_by_id
+from main import login, register, save_bookings, get_bookings, 
 
 app = Flask(__name__)
 
@@ -79,13 +79,12 @@ def dashboard():
             "children": request.form.get("children"),
             "ticket":     request.form.get("ticket"),
         }
-        if not save_bookings(username, booking):
-            bookings = get_bookings(username)
-            return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message="You already have a booking on this date")
+        save_bookings(username, booking)
         return redirect(url_for("dashboard"))
     
     bookings = get_bookings(username)
     return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
+
 
 @app.route("/delete/<int:booking_id>", methods=["POST"])
 def delete_booking(booking_id):

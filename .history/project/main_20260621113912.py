@@ -73,16 +73,12 @@ def save_bookings(username, booking):
             username,
             booking.get ("departure"),
             booking.get ("arrival"),
-            booking.get ("date"),
-            booking.get ("passengers"),
-            booking.get ("ticket"),
-        ))
-        conn.commit()
-        return True
-    except sqlite3.IntegrityError:
-        return False
-    finally:
-        conn.close()
+        booking.get ("date"),
+        booking.get ("passengers"),
+        booking.get ("ticket"),
+    ))
+    conn.commit()
+    conn.close()
 
 def get_bookings(username):
         #Returns a list of all the bookings for the given user only.

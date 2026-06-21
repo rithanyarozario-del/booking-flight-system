@@ -81,11 +81,10 @@ def dashboard():
         }
         if not save_bookings(username, booking):
             bookings = get_bookings(username)
-            return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message="You already have a booking on this date")
-        return redirect(url_for("dashboard"))
-    
-    bookings = get_bookings(username)
-    return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations)
+        return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message="You already have a booking on this date")
+
+    return redirect(url_for("dashboard"))
+
 
 @app.route("/delete/<int:booking_id>", methods=["POST"])
 def delete_booking(booking_id):

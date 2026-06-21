@@ -78,7 +78,6 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
         ))
         conn.commit()
-        return True
     except sqlite3.IntegrityError:
         return False
     finally:

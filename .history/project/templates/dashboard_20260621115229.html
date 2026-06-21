@@ -15,7 +15,7 @@
 
     {% if message %}
         <p style="color: red;">{{ message }}</p>
-    {% endif %}
+    {% if message %}
     <form method="POST" action="/dashboard">
         <label>Departure City</label><br>
         <select name="departure" id="departure" required>
