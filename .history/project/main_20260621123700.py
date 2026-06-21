@@ -3,7 +3,6 @@ import hashlib #Hashes users password
 import sqlite3 #Allowing Pyhton to talk to my SQL database 
 import re #Strong passwords for users to register or login
 
-
 USERFILE = "users.txt"
 DB_FILE = "bookings.db" #SQLite database file for storing bookings per user.
 
@@ -11,19 +10,13 @@ DB_FILE = "bookings.db" #SQLite database file for storing bookings per user.
 #Secures the Password by hashing using SHA-256 algortihm to ensure the password is not exposed.
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
-
-
-#Python validate password using RegEx (strong security feature)
-def is_valid_password(password):
-    if len(password) < 8:
-        return "Password must be aleast 8 characters long"
-    
-    if not re.search(r'[!@#$%&]', password):
-        return "Password must contain atleast one special symbol"
-    if not re.search('[A-Z]', password):
-        return "Password must contain atleast one capital letter"
-    return None
-
+#Python validate password sing RegEx
+pattern=re.compile(r'')
+while True:
+    password=input('Enter the password:')
+    if(len(password)<6):
+        print('password must be aleast 8 characters long')
+        elif re.seach
 
 
 
@@ -60,12 +53,7 @@ def users_exist(username):
 def register(username, password):
     #Add a new user, rejecting duplicates.
     if users_exist(username):
-        return "Username already exists" 
-    
-    error=is_valid_password(password)
-    if error:
-        return error
-     
+        return "Username already exists"      
     with open(USERFILE, "a") as f:
         f.write(f"{username}:{hash_password(password)}\n")
     return "Registration successful"

@@ -20,6 +20,8 @@ def is_valid_password(password):
     
     if not re.search(r'[!@#$%&]', password):
         return "Password must contain atleast one special symbol"
+    if not re.search(r'/d', password):
+        return "Password must alteast contain one digit"
     if not re.search('[A-Z]', password):
         return "Password must contain atleast one capital letter"
     return None

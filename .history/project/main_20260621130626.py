@@ -18,11 +18,19 @@ def is_valid_password(password):
     if len(password) < 8:
         return "Password must be aleast 8 characters long"
     
-    if not re.search(r'[!@#$%&]', password):
+    if not re.search(r'[!@#$%&]', password)
         return "Password must contain atleast one special symbol"
-    if not re.search('[A-Z]', password):
+    if not re.search(r'/d', password)
+        return "Password must alteast contain one digit"
+    if not re.search('[A-Z]', password)
         return "Password must contain atleast one capital letter"
-    return None
+    elif re.match(r'[a-z A-Z 0-9 !@#$%&]{6}', password)
+        pattern=re.complier(r'[a-z A-Z 0-9 !@#$%&]{6}', password)
+        result=pattern.match(password)
+        print()
+        break
+    else:
+        print('password is invlaid')
 
 
 
@@ -60,12 +68,7 @@ def users_exist(username):
 def register(username, password):
     #Add a new user, rejecting duplicates.
     if users_exist(username):
-        return "Username already exists" 
-    
-    error=is_valid_password(password)
-    if error:
-        return error
-     
+        return "Username already exists"      
     with open(USERFILE, "a") as f:
         f.write(f"{username}:{hash_password(password)}\n")
     return "Registration successful"

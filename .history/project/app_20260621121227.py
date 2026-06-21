@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from main import login, register, save_bookings, get_bookings, delete_booking_by_id
 
-app = Flask(__name__) #To run the web server
+app = Flask(__name__) #Handles web requests
 
 #secret keyfor session cookies 
 app.secret_key = "your_secret_key_here"
@@ -96,6 +96,6 @@ def delete_booking(booking_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True)
 
     
