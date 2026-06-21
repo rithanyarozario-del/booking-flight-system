@@ -211,7 +211,7 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             username,
@@ -222,7 +222,6 @@ def save_bookings(username, booking):
             booking.get ("adults"),
             booking.get ("children"),
             booking.get ("ticket"),
-            cost,
         ))
         conn.commit()
         return "OK"
@@ -239,7 +238,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost
+             SELECT id, departure, arrival, date, passengers, adults, children, ticket
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC

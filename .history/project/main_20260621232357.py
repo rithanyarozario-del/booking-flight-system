@@ -78,30 +78,30 @@ def seed_flights():
     c.execute("SELECT COUNT(*) FROM flights")
     if c.fetchone()[0] == 0:
         c.executemany("""
-            INSERT INTO flights (flight_code, departure, arrival, dep_time, arr_time, base_fare)
-            VALUES (?, ?, ?, ?, ?, ?)
-        """, [
-            ("RY01", "Sydney", "Melbourne", "09:00", "10:30", 150.00),
-            ("RY02", "Melbourne", "Sydney", "11:00", "12:30", 150.00),
-            ("RY03", "Sydney", "Brisbane", "08:30", "10:30", 200.00),
-            ("RY04", "Brisbane", "Sydney", "13:00", "15:00", 200.00),
-            ("RY05", "Sydney", "Adelaide", "09:00", "12:00", 180.00),
-            ("RY06", "Adelaide", "Sydney", "13:00", "16:00", 180.00),
-            ("RY07", "Melbourne", "Brisbane", "10:00", "12:00", 190.00),
-            ("RY08", "Brisbane", "Melbourne", "14:00", "16:00", 190.00),
-            ("RY09", "Adelaide", "Melbourne", "09:30", "11:00", 160.00),
-            ("RY10", "Melbourne", "Adelaide", "12:00", "01:30", 160.00),
-            ("RY11", "Adelaide", "Brisbane", "10:00", "13:00", 220.00),  
-            ("RY12", "Brisbane", "Adelaide", "14:00", "17:00", 220.00),    
-        ])
-        conn.commit()
-        conn.close()
+        INSERT INTO flights (flight_code, departure, arrival, dep_time, arr_time, base_fare)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, [
+        ("RY01", "Sydney", "Melbourne", "09:00", "10:30", 150.00),
+        ("RY02", "Melbourne", "Sydney", "11:00", "12:30", 150.00),
+        ("RY03", "Sydney", "Brisbane", "08:30", "10:30", 200.00),
+        ("RY04", "Brisbane", "Sydney", "13:00", "15:00", 200.00),
+        ("RY05", "Sydney", "Adelaide", "09:00", "12:00", 180.00),
+        ("RY06", "Adelaide", "Sydney", "13:00", "16:00", 180.00),
+        ("RY07", "Melbourne", "Brisbane", "10:00", "12:00", 190.00),
+        ("RY08", "Brisbane", "Melbourne", "14:00", "16:00", 190.00),
+        ("RY09", "Adelaide", "Melbourne", "09:30", "11:00", 160.00),
+        ("RY010", "Melbourne", "Adelaide", "12:00", "01:30", 160.00),
+        ("RY011", "Adelaide", "Brisbane", "10:00", "13:00", 220.00),  
+        ("RY012", "Brisbane", "Adelaide", "14:00", "17:00", 220.00),    
+    ])
+    conn.commit()
+    conn.close()
 
 #Cost changes depending on how many baggage, adults and children are part of the booking
 BAGGAGE_FEE = 30.00
 CHILD_DISCOUNT = 0.5
 
-def calculate_cost(departure, arrival, adults, children, bags):
+def calculate_cost(departure, arrival, adults, children, bags)
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
     c.execute("SELECT base_fare FROM flights WHERE departure = ? AND arrival = ?", (departure, arrival))
@@ -196,10 +196,10 @@ def save_bookings(username, booking):
     
     #Work out the price before saving the booking
     cost = calculate_cost(
-        booking.get("departure"),
-        booking.get("arrival"),
-        booking.get("adults"),
-        booking.get("children"),
+        booking.get("departure")
+        booking.get("arrival")
+        booking.get("adults")
+        booking.get("children")
         booking.get("bags")
     )
     if cost is None: 
@@ -211,7 +211,7 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             username,
@@ -222,7 +222,6 @@ def save_bookings(username, booking):
             booking.get ("adults"),
             booking.get ("children"),
             booking.get ("ticket"),
-            cost,
         ))
         conn.commit()
         return "OK"
@@ -239,7 +238,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost
+             SELECT id, departure, arrival, date, passengers, adults, children, ticket
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC

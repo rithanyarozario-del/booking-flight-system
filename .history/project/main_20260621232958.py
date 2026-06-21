@@ -239,7 +239,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost
+             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cos
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC
