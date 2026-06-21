@@ -115,7 +115,6 @@ def calculate_cost(departure, arrival, adults, children, bags)
     return round(adult_cost + child_cost+ baggage_cost, 2)
 
 
-
 #Increases price based on date and how closer depature and arrival dates are to today
 def apply_date_surcharge(base_cost, departure_date_str):
     departure_date = datetime.strptime(departure_date_str, "%Y-%m-%d")

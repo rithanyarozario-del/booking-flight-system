@@ -51,7 +51,6 @@ def init_db(): #Creates an booking table that does not already exist to stre use
 init_db() #Initialises the database when the website first starts.
 
 
-
 #SQL Table storing flight prices (Sqlite)
 def init_flights_table():
     conn = sqlite3.connect(DB_FILE)
@@ -96,25 +95,6 @@ def seed_flights():
     conn.commit()
     conn.close()
 
-#Cost changes depending on how many baggage, adults and children are part of the booking
-BAGGAGE_FEE = 30.00
-CHILD_DISCOUNT = 0.5
-
-def calculate_cost(departure, arrival, adults, children, bags)
-    conn = sqlite3.connect(DB_FILE)
-    c = conn.cursor()
-    c.execute("SELECT base_fare FROM flights WHERE departure = ? AND arrival = ?", (departure, arrival))
-    row = c.fetchone()
-    conn.close()
-    if row is None: 
-        return None
-    base_fare = row[0]
-    adult_cost = int(adults) * base_fare
-    child_cost = int(children) * base_fare * CHILD_DISCOUNT
-    baggage_cost = int(bags) * BAGGAGE_FEE
-    return round(adult_cost + child_cost+ baggage_cost, 2)
-
-
 
 #Increases price based on date and how closer depature and arrival dates are to today
 def apply_date_surcharge(base_cost, departure_date_str):
@@ -123,11 +103,6 @@ def apply_date_surcharge(base_cost, departure_date_str):
     days_until_departure = (departure_date - today).days
 
     if days_until_departure <= 7:
-        return base_cost * 1.20
-    elif days_until_departure <= 14:
-        return base_cost * 1.10
-    else:
-        return base_cost
 
 
 

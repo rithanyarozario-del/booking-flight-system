@@ -106,14 +106,7 @@ def calculate_cost(departure, arrival, adults, children, bags)
     c.execute("SELECT base_fare FROM flights WHERE departure = ? AND arrival = ?", (departure, arrival))
     row = c.fetchone()
     conn.close()
-    if row is None: 
-        return None
-    base_fare = row[0]
-    adult_cost = int(adults) * base_fare
-    child_cost = int(children) * base_fare * CHILD_DISCOUNT
-    baggage_cost = int(bags) * BAGGAGE_FEE
-    return round(adult_cost + child_cost+ baggage_cost, 2)
-
+    if
 
 
 #Increases price based on date and how closer depature and arrival dates are to today

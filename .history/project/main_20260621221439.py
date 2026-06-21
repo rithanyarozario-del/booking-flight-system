@@ -112,8 +112,6 @@ def calculate_cost(departure, arrival, adults, children, bags)
     adult_cost = int(adults) * base_fare
     child_cost = int(children) * base_fare * CHILD_DISCOUNT
     baggage_cost = int(bags) * BAGGAGE_FEE
-    return round(adult_cost + child_cost+ baggage_cost, 2)
-
 
 
 #Increases price based on date and how closer depature and arrival dates are to today
