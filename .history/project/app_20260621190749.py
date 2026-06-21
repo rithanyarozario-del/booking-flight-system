@@ -93,9 +93,8 @@ def dashboard():
             "children": request.form.get("children"),
             "ticket":     request.form.get("ticket"),
         }
-        result = save_bookings(username, booking)
-        if result != "OK":
-            bookings = get_bookings(username)
+        result=save_bookings(username, booking):
+            if result != "OK":
             return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message=result)
         return redirect(url_for("dashboard"))
     

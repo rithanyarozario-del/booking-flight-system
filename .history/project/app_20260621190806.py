@@ -95,7 +95,6 @@ def dashboard():
         }
         result = save_bookings(username, booking)
         if result != "OK":
-            bookings = get_bookings(username)
             return render_template("dashboard.html", username=username, bookings=bookings, destinations=destinations, message=result)
         return redirect(url_for("dashboard"))
     

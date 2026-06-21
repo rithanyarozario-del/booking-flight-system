@@ -126,9 +126,9 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
         ))
         conn.commit()
-        return "OK"
+        return "Ok"
     except sqlite3.IntegrityError:
-        return "You already have an booking on this date"
+        return False
     finally:
         conn.close()
 

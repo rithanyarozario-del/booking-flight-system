@@ -107,8 +107,7 @@ def send_eticket(to_email, booking):
 
 def save_bookings(username, booking):
     #Not allowing the same city input for departure and arrival
-    if booking.get("departure") == booking.get("arrival"):
-        return "Departure and Arrival cities can not be the same"
+    if booking.get("departure")
     #Only insert one booking row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
     c    = conn.cursor() 
@@ -126,9 +125,9 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
         ))
         conn.commit()
-        return "OK"
+        return True
     except sqlite3.IntegrityError:
-        return "You already have an booking on this date"
+        return False
     finally:
         conn.close()
 
