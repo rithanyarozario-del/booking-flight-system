@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Register -Flight Booking System</title>
+</head>
+<body>
+
+    <h1>Register</h1>
+
+        {% if message %}
+        <p style="color: {% if message == 'Registration successful' %}green{% else %}red{% endif %};">
+            {{ message }}
+        </p>
+    {% endif %}
+
+    <form method="POST">
+        <input type="text" name="username"placeholder="Username">
+        <br><br>
+        <input type="password" name="password" placeholder="Password">
+        <br><br>   
+        <input type="email" name="email" placeholder="Email" required>
+        <br><br
+        <button type="submit">Register</button>
+    </form>
+
+    <br>
+    Already have an account? <a href="/login">Login here.</a>
+
+</body>
+</html>
