@@ -118,7 +118,7 @@ def save_bookings(username, booking):
     try:
         c.execute("""
             INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, )
         """, (
             username,
             booking.get ("departure"),

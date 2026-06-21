@@ -31,17 +31,14 @@ def init_db(): #Creates an booking table that does not already exist to stre use
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
     c.execute("""
-        CREATE TABLE IF NOT EXISTS bookings (
-            id         INTEGER PRIMARY KEY AUTOINCREMENT,
-            username   TEXT    NOT NULL,
-            departure  TEXT,
-            arrival    TEXT,
-            date       TEXT,
-            passengers TEXT,
-            adults     TEXT,
-            children   TEXT,
-            ticket     TEXT,
-            UNIQUE(username, date)
+    INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (
+            username,
+            booking.get ("departure"),
+            booking.get ("departure"),
+            booking.get ("departure")
+            
         )
     """)
     conn.commit()
@@ -117,8 +114,8 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
+            VALUES (?, ?, ?, ?, ?, ?)
         """, (
             username,
             booking.get ("departure"),

@@ -38,8 +38,6 @@ def init_db(): #Creates an booking table that does not already exist to stre use
             arrival    TEXT,
             date       TEXT,
             passengers TEXT,
-            adults     TEXT,
-            children   TEXT,
             ticket     TEXT,
             UNIQUE(username, date)
         )
@@ -117,16 +115,14 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, ticket)
+            VALUES (?, ?, ?, ?, ?, ?)
         """, (
             username,
             booking.get ("departure"),
             booking.get ("arrival"),
             booking.get ("date"),
             booking.get ("passengers"),
-            booking.get ("adults"),
-            booking.get ("children"),
             booking.get ("ticket"),
         ))
         conn.commit()
@@ -142,7 +138,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket
+             SELECT id, departure, arrival, date, passengers, ticket
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC
