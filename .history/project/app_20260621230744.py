@@ -92,7 +92,7 @@ def dashboard():
             "adults":     request.form.get("adults"),
             "children":   request.form.get("children"),
             "ticket":     request.form.get("ticket"),
-            "bags":       request.form.get("bags"),
+            "bags":       request.form.get("bags")
         }
         result = save_bookings(username, booking)
         if result != "OK":

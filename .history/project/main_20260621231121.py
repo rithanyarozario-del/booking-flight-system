@@ -195,16 +195,7 @@ def save_bookings(username, booking):
         return "Departure and Arrival cities can not be the same"
     
     #Work out the price before saving the booking
-    cost = calculate_cost(
-        booking.get("departure")
-        booking.get("arrival")
-        booking.get("adults")
-        booking.get("children")
-        booking.get("bags")
-    )
-    if cost is None: 
-        return "No flight found for this route"
-
+    
     #Only insert one booking row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
     c    = conn.cursor() 
@@ -229,8 +220,6 @@ def save_bookings(username, booking):
         return "You already have an booking on this date"
     finally:
         conn.close()
-
-        
 
 def get_bookings(username):
         #Returns a list of all the bookings for the given user only.

@@ -42,7 +42,7 @@ def init_db(): #Creates an booking table that does not already exist to stre use
             adults     TEXT,
             children   TEXT,
             ticket     TEXT,
-            cost       REAL,
+            cost        REAL
             UNIQUE(username, date)
         )
     """)
@@ -193,18 +193,6 @@ def save_bookings(username, booking):
     #Not allowing the same city input for departure and arrival
     if booking.get("departure") == booking.get("arrival"):
         return "Departure and Arrival cities can not be the same"
-    
-    #Work out the price before saving the booking
-    cost = calculate_cost(
-        booking.get("departure")
-        booking.get("arrival")
-        booking.get("adults")
-        booking.get("children")
-        booking.get("bags")
-    )
-    if cost is None: 
-        return "No flight found for this route"
-
     #Only insert one booking row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
     c    = conn.cursor() 
@@ -229,8 +217,6 @@ def save_bookings(username, booking):
         return "You already have an booking on this date"
     finally:
         conn.close()
-
-        
 
 def get_bookings(username):
         #Returns a list of all the bookings for the given user only.

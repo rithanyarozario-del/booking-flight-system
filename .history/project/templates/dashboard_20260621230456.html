@@ -114,9 +114,8 @@
         </script>
 
 
-        <label>Number of Bags</label><br>
-        <input type="number" name="bags" min="0" value="0" max="10">
-        <br><br>
+        <label>Ticket Class</label><br>
+        <input 
 
 
         <label>Ticket Class</label><br>
@@ -141,7 +140,6 @@
                 <th>Date</th>
                 <th>Passengers</th>
                 <th>Class</th>
-                <th>Cost</th>
                 <th>Delete</th>
             </tr>
             {% for b in bookings %}
@@ -152,7 +150,6 @@
                 <td>{{ b.date }}</td>
                 <td>{{ b.passengers }} ({{ b.adults }} adult{{ 's' if b.adults != '1' }}, {{ b.children }} child{{ 'ren' if b.children != '1' }})</td>
                 <td>{{ b.ticket }}</td>
-                <td>${{ b.cost }}</td>
                 <td>
                 <form method="POST" action="/delete/{{ b.id }}" style="display:inline;">
                     <button type="submit">Delete</button>

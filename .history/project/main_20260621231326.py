@@ -230,8 +230,6 @@ def save_bookings(username, booking):
     finally:
         conn.close()
 
-        
-
 def get_bookings(username):
         #Returns a list of all the bookings for the given user only.
         conn = sqlite3.connect(DB_FILE)
