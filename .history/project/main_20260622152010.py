@@ -233,7 +233,7 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
             cost,
             booking.get ("bags"),
-            booking.get ("return_date")
+            bookings.get ("return_date")
         ))
         conn.commit()
         return "OK"

@@ -77,6 +77,15 @@
             });
         </script>
 
+        <label>Return Flight?</label>
+        <input type="checkbox" name="is_return" id="is_return" onclick="document.getElementById('return_date_box').style.display = this.checked ? 'block' : 'none'">
+        <br><br>
+        <div id="return_date_box" style="display:none;">
+            <label>Return Date</label><br>
+        <input
+        </div>"
+
+
 
                 <label>Number of Passengers</label><br>
         <input type="number" name="passengers" min="1" value="1" max="20"oninput="updatePassengers(this.value)" required>
@@ -126,21 +135,6 @@
         </select>
         <br><br>
 
-        <label>Return Flight?</label>
-        <input type="checkbox" name="is_return" id="is_return" onclick="document.getElementById('return_date_box').style.display = this.checked ? 'block' : 'none'">
-        <br><br>
-        <div id="return_date_box" style="display:none;">
-            <label>Return Date</label><br>
-            <input type="date" name="return_date" id="return_date">
-            <br><br>
-        </div>
-
-        <script>
-            document.getElementById("date").addEventListener("change", function(){
-            document.getElementById("return_date").min = this.value;
-        });
-        </script>
-
         <button type="submit">Book Flight</button>
     </form>
 
@@ -158,8 +152,7 @@
                 <th>Class</th>
                 <th>Cost</th>
                 <th>Bags</th>
-                <th>Return Date</th>
-                <th></th>
+                <th>E-Ticket</th>
                 <th></th>
             </tr>
             {% for b in bookings %}
@@ -172,7 +165,6 @@
                 <td>{{ b.ticket }}</td>
                 <td>${{ b.cost }}</td>
                 <td>{{ b.bags }}</td>
-                <td>{{ b.return_date if b.return_date else "—" }}</td>
                 <td>
                     <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
                         <button type="submit">Email my e-ticket</button>

@@ -158,8 +158,7 @@
                 <th>Class</th>
                 <th>Cost</th>
                 <th>Bags</th>
-                <th>Return Date</th>
-                <th></th>
+                <th>E-Ticket</th>
                 <th></th>
             </tr>
             {% for b in bookings %}
@@ -172,7 +171,8 @@
                 <td>{{ b.ticket }}</td>
                 <td>${{ b.cost }}</td>
                 <td>{{ b.bags }}</td>
-                <td>{{ b.return_date if b.return_date else "—" }}</td>
+
+                 <td>{{ b.return_date if b.return_date else "—" }}</td>
                 <td>
                     <form method="POST" action="/eticket/{{ b.id }}" style="display:inline;">
                         <button type="submit">Email my e-ticket</button>

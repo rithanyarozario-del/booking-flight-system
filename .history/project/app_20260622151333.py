@@ -94,7 +94,7 @@ def dashboard():
             "ticket":     request.form.get("ticket"),
             "bags":       request.form.get("bags"),
             "is_return":  request.form.get("is_return"),
-            "return_date": request.form.get("return_date")
+            "return_date": request.form.get("re")
         }
         result = save_bookings(username, booking)
         if result != "OK":
@@ -114,6 +114,6 @@ def delete_booking(booking_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5008)
+    app.run(debug=True, port=5007)
 
     

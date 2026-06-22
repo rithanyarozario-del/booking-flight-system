@@ -221,7 +221,7 @@ def save_bookings(username, booking):
     try:
         c.execute("""
             INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost, bags, return_date)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,)
         """, (
             username,
             booking.get ("departure"),
@@ -233,7 +233,7 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
             cost,
             booking.get ("bags"),
-            booking.get ("return_date")
+            bookings.get ("return_date")
         ))
         conn.commit()
         return "OK"
