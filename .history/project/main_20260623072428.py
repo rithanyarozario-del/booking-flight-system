@@ -196,8 +196,8 @@ def send_eticket(to_email, booking):
     from datetime import datetime
 
     dep = datetime.strptime(booking['dep_time'], "%H:%M")
-    arr = datetime.strptime(booking['arr_time'], "%H:%M")
-    duration = arr - dep
+arr = datetime.strptime(booking['arr_time'], "%H:%M")
+duration = arr - dep
 #What is sent to users email as an e-ticket
     body = f"""E-Ticket Confirmation
 

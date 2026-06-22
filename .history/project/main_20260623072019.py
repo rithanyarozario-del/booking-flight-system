@@ -192,12 +192,7 @@ def get_user_email(username):
 
 
 def send_eticket(to_email, booking):
-    import requests
-    from datetime import datetime
-
-    dep = datetime.strptime(booking['dep_time'], "%H:%M")
-    arr = datetime.strptime(booking['arr_time'], "%H:%M")
-    duration = arr - dep
+    import reques
 #What is sent to users email as an e-ticket
     body = f"""E-Ticket Confirmation
 
@@ -212,17 +207,14 @@ Cost: ${booking['cost']}
 Bags: {booking['bags']}
 Return Date: {booking['return_date'] if booking['return_date'] else 'N/A'}
 """
-#From resend, get emails
-    requests.post(
-        "https://api.resend.com/emails",
-        headers={"Authorization": f"Bearer {os.environ.get('RESEND_API_KEY')}"},
-        json={
-            "from": "onboarding@resend.dev",
-            "to": [to_email],
-            "subject": "Your E-Ticket",
-            "text": body,
-        },
-    )
+
+    msg = MIMEText(body)
+    msg["Subject"] = "Your E-Ticket"
+    msg["From"] = "flightpath73@gmail.com"
+    msg["To"] = to_email
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+        server.login("flightpath73@gmail.com", os.environ.get("EMAIL_APP_PASSWORD"))
+        server.send_message(msg)
 
 
 

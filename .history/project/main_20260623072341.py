@@ -195,16 +195,16 @@ def send_eticket(to_email, booking):
     import requests
     from datetime import datetime
 
-    dep = datetime.strptime(booking['dep_time'], "%H:%M")
-    arr = datetime.strptime(booking['arr_time'], "%H:%M")
-    duration = arr - dep
+dep = datetime.strptime(booking['dep_time'], "%H:%M")
+arr = datetime.strptime(booking['arr_time'], "%H:%M")
+duration = arr - dep
 #What is sent to users email as an e-ticket
     body = f"""E-Ticket Confirmation
 
 Flight Code: {booking['flight_code']}
 Departure: {booking['departure']} ({booking['dep_time']})
 Arrival: {booking['arrival']} ({booking['arr_time']})
-Duration: {duration}
+Duration: {'duration'}
 Date: {booking['date']}
 Passengers: {booking['passengers']} ({booking['adults']} adult(s), {booking['children']} child(ren))
 Class: {booking['ticket']}
