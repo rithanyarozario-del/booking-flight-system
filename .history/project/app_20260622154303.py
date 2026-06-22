@@ -56,7 +56,6 @@ def eticket(booking_id):
     if booking:
         email = get_user_email(session["username"])
         send_eticket(email, booking)
-        return render_template("eticket_success.html", email=email)
     return redirect(url_for ("dashboard"))
 
 

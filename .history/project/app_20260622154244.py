@@ -55,8 +55,7 @@ def eticket(booking_id):
     booking = next((b for b in bookings if b["id"] == booking_id), None)
     if booking:
         email = get_user_email(session["username"])
-        send_eticket(email, booking)
-        return render_template("eticket_success.html", email=email)
+        send_eticket(get_user_email(session["username"]), booking)
     return redirect(url_for ("dashboard"))
 
 
