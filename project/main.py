@@ -5,8 +5,9 @@ import re #Strong passwords for users to register or login
 from datetime import datetime
 
 
-USERFILE = "users.txt"
-DB_FILE = "bookings.db" #SQLite database file for storing bookings per user.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+USERFILE = os.path.join(BASE_DIR, "users.txt")
+DB_FILE = os.path.join(BASE_DIR, "bookings.db") #SQLite database file for storing bookings per user.
 
 
 #Secures the Password by hashing using SHA-256 algortihm to ensure the password is not exposed.

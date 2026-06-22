@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from main import login, register, save_bookings, get_bookings, delete_booking_by_id, get_user_email, send_eticket
+import os
 
 app = Flask(__name__) #To run the web server
 
@@ -81,7 +82,8 @@ def dashboard():
     username = session["username"]
 
     #Read arrival destinations from an file.
-    with open("destinations.txt", "r") as f:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(BASE_DIR, "destinations.txt"), "r") as f:
         destinations = [line.strip() for line in f.readlines()]
 
     if request.method == "POST":
@@ -115,6 +117,7 @@ def delete_booking(booking_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5013)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
     
