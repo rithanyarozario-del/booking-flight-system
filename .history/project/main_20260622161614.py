@@ -1,6 +1,6 @@
 import os
 import hashlib #Hashes users password
-import sqlite3 #Allowing Python to talk to my SQL database 
+import sqlite3 #Allowing Pyhton to talk to my SQL database 
 import re #Strong passwords for users to register or login
 from datetime import datetime
 
@@ -45,9 +45,6 @@ def init_db(): #Creates an booking table that does not already exist to seperate
             cost       REAL,
             bags       TEXT,
             return_date TEXT,
-            flight_code TEXT,
-            dep_time   TEXT,
-            arr_time   TEXT,
             UNIQUE(username, date)
         )
     """)
@@ -189,31 +186,10 @@ def get_user_email(username):
     return None
 
 
-
 def send_eticket(to_email, booking):
     import smtplib
     from email.mime.text import MIMEText
-    from datetime import datetime
-
-    dep = datetime.strptime(booking['dep_time'], "%H:%M")
-    arr = datetime.strptime(booking['arr_time'], "%H:%M")
-    duration = arr - dep
-#What is sent to users email as an e-ticket
-    body = f"""E-Ticket Confirmation
-
-Flight Code: {booking['flight_code']}
-Departure: {booking['departure']} ({booking['dep_time']})
-Arrival: {booking['arrival']} ({booking['arr_time']})
-Duration: {duration}
-Date: {booking['date']}
-Passengers: {booking['passengers']} ({booking['adults']} adult(s), {booking['children']} child(ren))
-Class: {booking['ticket']}
-Cost: ${booking['cost']}
-Bags: {booking['bags']}
-Return Date: {booking['return_date'] if booking['return_date'] else 'N/A'}
-"""
-
-    msg = MIMEText(body)
+    msg = MIMEText(f"Departure: {booking['departure']}\nArrival: {booking['arrival']}\nDate: {booking['date']}")
     msg["Subject"] = "Your E-Ticket"
     msg["From"] = "flightpath73@gmail.com"
     msg["To"] = to_email
@@ -245,9 +221,7 @@ def save_bookings(username, booking):
         cost *= 2
 
     flight_code = flight_info["flight_code"]
-    dep_time = flight_info["dep_time"]
-    arr_time = flight_info["arr_time"]
-
+    
 
     #Only insert one booking row for the given user which will not affect other users bookings.
     conn = sqlite3.connect(DB_FILE)
@@ -255,8 +229,8 @@ def save_bookings(username, booking):
     #SQL Database that stores all bookings for all users   
     try:
         c.execute("""
-            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost, bags, return_date, flight_code, dep_time, arr_time)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO bookings (username, departure, arrival, date, passengers, adults, children, ticket, cost, bags, return_date)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             username,
             booking.get ("departure"),
@@ -268,10 +242,7 @@ def save_bookings(username, booking):
             booking.get ("ticket"),
             cost,
             booking.get ("bags"),
-            booking.get ("return_date"),
-            flight_code,
-            dep_time,
-            arr_time,
+            booking.get ("return_date")
         ))
         conn.commit()
         return "OK"
@@ -288,7 +259,7 @@ def get_bookings(username):
         conn.row_factory = sqlite3.Row
         c = conn.cursor()
         c.execute ("""
-             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost, bags, return_date, flight_code, dep_time, arr_time
+             SELECT id, departure, arrival, date, passengers, adults, children, ticket, cost, bags, return_date
              FROM   bookings
              WHERE  username = ?
              ORDER  BY id DESC

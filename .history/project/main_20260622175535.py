@@ -208,7 +208,7 @@ Duration: {duration}
 Date: {booking['date']}
 Passengers: {booking['passengers']} ({booking['adults']} adult(s), {booking['children']} child(ren))
 Class: {booking['ticket']}
-Cost: ${booking['cost']}
+Cost: {booking['cost']}
 Bags: {booking['bags']}
 Return Date: {booking['return_date'] if booking['return_date'] else 'N/A'}
 """

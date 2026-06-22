@@ -45,7 +45,7 @@ def init_db(): #Creates an booking table that does not already exist to seperate
             cost       REAL,
             bags       TEXT,
             return_date TEXT,
-            flight_code TEXT,
+            
             dep_time   TEXT,
             arr_time   TEXT,
             UNIQUE(username, date)
@@ -198,9 +198,10 @@ def send_eticket(to_email, booking):
     dep = datetime.strptime(booking['dep_time'], "%H:%M")
     arr = datetime.strptime(booking['arr_time'], "%H:%M")
     duration = arr - dep
-#What is sent to users email as an e-ticket
+
     body = f"""E-Ticket Confirmation
 
+#What is sent to users email as an e-ticket
 Flight Code: {booking['flight_code']}
 Departure: {booking['departure']} ({booking['dep_time']})
 Arrival: {booking['arrival']} ({booking['arr_time']})
@@ -208,7 +209,7 @@ Duration: {duration}
 Date: {booking['date']}
 Passengers: {booking['passengers']} ({booking['adults']} adult(s), {booking['children']} child(ren))
 Class: {booking['ticket']}
-Cost: ${booking['cost']}
+Cost: {booking['cost']}
 Bags: {booking['bags']}
 Return Date: {booking['return_date'] if booking['return_date'] else 'N/A'}
 """
