@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>FlightPath</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking Form</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
     <style>
         body {
@@ -13,14 +16,12 @@
         }
     </style>
 </head>
-<body>
-    
-     <h1>Welcome, {{ username }}!</h1>
-     <p>Your Account has been successfully created!!</p>
-     <p>You can log in using your username and password now.</p>
 
-     <br>
-     <button onclick="window.location.href='/login'">Go to Login</button>
-  
+<body>
+<form>
+<input type="text" name="name">
+<input type="email" name="email">
+<textarea name="comment"></textarea>
+</form>
 </body>
 </html>
