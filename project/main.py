@@ -212,15 +212,15 @@ Cost: ${booking['cost']}
 Bags: {booking['bags']}
 Return Date: {booking['return_date'] if booking['return_date'] else 'N/A'}
 """
-#From resend, get emails
+#From SendGrid, get emails
     requests.post(
-        "https://api.resend.com/emails",
-        headers={"Authorization": f"Bearer {os.environ.get('RESEND_API_KEY')}"},
+        "https://api.sendgrid.com/v3/mail/send",
+        headers={"Authorization": f"Bearer {os.environ.get('SENDGRID_API_KEY')}"},
         json={
-            "from": "onboarding@resend.dev",
-            "to": [to_email],
+            "personalizations": [{"to": [{"email": to_email}]}],
+            "from": {"email": "flightpath73@gmail.com"},
             "subject": "Your E-Ticket",
-            "text": body,
+            "content": [{"type": "text/plain", "value": body}],
         },
     )
 
