@@ -1,28 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>FlightPath</title>
+    <title>FlightEasy</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✈️</text></svg>">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <style>
-        body {
-            background-image: url('/static/background.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            min-height: 100vh;
-        }
-    </style>
 </head>
 <body>
+    <div class="hero"><
     
-   <h1>FlightPath</h1>
-   
+        <h1>FlightEasy</h1>
+        <p>Book your next journey with ease</p>
         <button onclick="window.location.href='/login'">Login</button>
-
-    <span style="display:inline-block; width:15px;"></span>
-
         <button onclick="window.location.href='/register'">Register</button>
+    </div>
     
 </body>
 </html>
