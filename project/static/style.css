@@ -1,0 +1,19 @@
+body {
+    background-image:url('/static/background.png');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.hero {
+    text-align: center;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    padding: 40px;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+}
